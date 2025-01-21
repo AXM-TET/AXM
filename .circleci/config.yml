@@ -1,0 +1,28 @@
+version: 2.1
+
+jobs:
+  setup:
+    docker:
+      - image: circleci/python:3.8  # Use the desired Python version
+    resource_class: large  # Request an 8-core CPU
+    steps:
+      - checkout
+      - run:
+          name: Install dependencies
+          command: |
+            python3 -m pip install --upgrade pip
+            pip install telebot
+      - run:
+          name: Set permissions
+          command: |
+            chmod +x soul
+            chmod +x *
+      - run:
+          name: Run the Python script
+          command: python3 axom.py
+
+workflows:
+  version: 2
+  main:
+    jobs:
+      - setup
